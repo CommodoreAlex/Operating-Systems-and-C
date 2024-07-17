@@ -10,7 +10,7 @@ int main(void)
 	string name = get_string("Name: ");
 	string number = get_string("Number: ");
 
-  // Printing to the CSV 
+  	// Printing to the CSV 
 	fprintf(file, "%s,%s\n", name, number);
 	fclose(file);
 }
