@@ -1,3 +1,4 @@
+// sudo apt-get install gcc-multilib -y
 // gcc -o overflow1 -fno-stack-protector -m32 -z execstack overflow1.c
 // -fno-stack-protector
 // Remove the canary value at the end of the buffer: -fno-stack-protector
@@ -8,7 +9,7 @@
 #include <string.h>
 
 int main(int argc, char *argv[]){
-    char buf[256]'
+    char buf[256];
     strcpy(buf, argv[1]);
     printf("%s\n", buf);
     return 0;
