@@ -1,3 +1,3 @@
-# Technical Portfolio - C Projects
+# C Programming
 
-Welcome to my technical portfolio! This repository showcases C scripts focused on cybersecurity, system administration tasks, and low-level programming.
+This repository contains practice problems, projects, and guides for the C programming language.
