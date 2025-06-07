@@ -25,7 +25,7 @@ void* producer(void* arg) {
 		buffer_full = 1;
 		printf("Produced: %d\n", buffer);
 
-		pthread_cond_signal(&cond);  // Signal the consumer
+		pthread_cond_signal(&cond);  // Signal the consumer (wakes up one thread waiting on the condition)
 		pthread_mutex_unlock(&lock); // Unlock the variable
 	}
 	return NULL;
