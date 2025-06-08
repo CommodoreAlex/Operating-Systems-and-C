@@ -1,21 +1,33 @@
 #include <stdio.h>
-#include <fcntl.h>  // File Control Definitions, providing open()
-#include <unistd.h> // POSIX Operating System API, allowing access to write() and close()
-#include <string.h> // String Manipulation Functions, enabling operations like strlen()
-
-// Using Named Pipes (FIFO)
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/stat.h> // Needed for mkfifo
 
 int main() {
+    const char *fifo_path = "myfifo";
+    int fd; // Creating the file descriptor handler
 
-	// Initialize the file descriptor (handler for I/O)
-	int fd;
+    // Create FIFO (ignore if it already exists)
+    if (mkfifo(fifo_path, 0666) == -1) {
+        perror("[Writer] mkfifo (may already exist)");
+    } else {
+        printf("[Writer] FIFO created.\n");
+    }
 
-	// Creating a constant pointer to our message
-	const char *message = "Message from writer";
+    char *message = "Message from writer";
 
-	fd = open("myfifo", O_WRONLY);			 // Open the file in write-only mode (O_WRONLY)
-	write(fd, message, strlen(message) + 1); // Writing with fd (handler, message, length of message + 1 for null-terminator \0) 
-	close(fd);
+    printf("[Writer] Waiting to open FIFO...\n");
+    fd = open(fifo_path, O_WRONLY);
+    if (fd == -1) {
+        perror("[Writer] open");
+        return 1;
+    }
 
-	return 0;
+    printf("[Writer] Writing to FIFO...\n");
+    write(fd, message, strlen(message) + 1);
+    close(fd);
+
+    printf("[Writer] Done.\n");
+    return 0;
 }
