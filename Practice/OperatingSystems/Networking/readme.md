@@ -21,8 +21,6 @@ A **socket** is an endpoint for communication between two systems over a network
 5. **Server accepts the client** → `accept()`
 6. **Data is exchanged** → `send()` / `recv()`
 
-Sockets are essential in networking and are widely used in web servers, messaging applications, and cybersecurity tools.
-
 ---
 
 ![image](https://github.com/user-attachments/assets/173c0c18-b1ca-4296-944c-5118c3e3ee1f)
