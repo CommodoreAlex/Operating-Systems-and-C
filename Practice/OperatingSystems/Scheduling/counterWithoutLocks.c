@@ -10,21 +10,21 @@ typedef struct __counter_t {
 } counter_t;
 
 // Initialize the counter
-void init (counter_t *c) {
+void init(counter_t *c) {
     c->value = 0;
 }
 
 // Increment the counter
-void increment (counter_t *c) {
+void increment(counter_t *c) {
     c->value++;
 }
 
 // Decrement the counter
-void decrement (counter_t *c) {
+void decrement(counter_t *c) {
     c->value--;
 }
 
 // Get the value of counter
-int get (counter_t *c) {
+int get(counter_t *c) {
     return c->value;
 }
