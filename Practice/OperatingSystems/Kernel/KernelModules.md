@@ -19,10 +19,33 @@ Kernel Module Management is performed through the following utilities:
 The dependencies between modules are tracked in:
 - `/lib/modules/<kernel_version>/modules.dep` and MODPROBE is able to resolve these.
 
+The following are the types of messages you can embed in your modules to create logs:
+- KERN_EMERG: Used for emergency messages, usually those that precede a crash.
+- KERN_ALERT: A situation requiring immediate action.
+- KERN_CRIT: Critical conditions, often related to serious hardware or software failures.
+- KERN_ERR: Used to report error conditions; device drivers often use KERN_ERR to report hardware difficulties.
+- KERN_WARNING: Warnings about problematic situations that do not, in themselves, create serious problems with the system.
+- KERN_NOTICE: Situations that are normal, but still worthy of note. A number of security-related conditions are reported at this level.
+- KERN_INFO: Informational messages. Many drivers print information about the hardware they find at startup time at this level.
+- KERN_DEBUG: Used for debugging messages.
+
+These are listed in decreasing order of severity.
+
 ---
 
 ## Creating a Basic Kernel Module
 
+
+In order to build Kernel modules on a system you have to install the required headers:
+```bash
+apt-get install build-essential linux-headers-$(uname -r)
+```
+
+When creating a Kernel module these will require at least the minimum two functions; "start" (initialization) called `init_module()` and "end" (cleanup) function called `cleanup_module()`.
+
+With Kernel `2.3.13` you're now able to name these functions whatever you like, which is now preferred.
+
+The `printk()` function will print to `/var/log/kern.log` instead of the console. 
 
 Creating the source file in C programming language:
 ```c
